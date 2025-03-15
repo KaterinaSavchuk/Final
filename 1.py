@@ -1,3 +1,21 @@
+# Рівні гри
+level = int(input ("Оберіть рівень (від 1 до 3)"))
+if level == 1:
+    goal = 20
+    max_lost = 10
+    life = 8
+    bullet_count = 15
+if level == 2:
+    goal = 35
+    max_lost = 5
+    life = 5
+    bullet_count = 10
+if level == 3:
+    goal = 50
+    max_lost = 3
+    life = 3
+    bullet_count = 5
+
 from pygame import *
 from random import randint
 import time as pytime
@@ -36,11 +54,8 @@ background = transform.scale(image.load(img_back), (win_width, win_height))
 clock = time.Clock()
 FPS = 60
 score = 0
-goal = 50
+
 lost = 0
-max_lost = 3
-life = 3
-bullet_count = 10
 reload_start_time = None
 
 # Клас спрайтів
@@ -98,9 +113,6 @@ for i in range(5):
 
 finish = False
 run = True
-# Рівні гри
-level = input ("Оберіть рівень (від 1 до 3)")
-if level == 1:
 
 while run:
     for e in event.get():
@@ -111,7 +123,6 @@ while run:
                 ship.fire()
             elif bullet_count == 0 and reload_start_time is None:
                 reload_start_time = pytime.time()
-
     if not finish:
         window.blit(background, (0, 0))
         ship.update()
